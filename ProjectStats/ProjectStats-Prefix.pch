@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'ProjectStats' target in the 'ProjectStats' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif
