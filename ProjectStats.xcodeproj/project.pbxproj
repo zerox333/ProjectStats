@@ -26,7 +26,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		AB6B2D0E1716FF21004FC2F9 /* ProjectStats */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ProjectStats; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB6B2D0E1716FF21004FC2F9 /* projectstats */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = projectstats; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB6B2D111716FF21004FC2F9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AB6B2D141716FF21004FC2F9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AB6B2D171716FF21004FC2F9 /* ProjectStats-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ProjectStats-Prefix.pch"; sourceTree = "<group>"; };
@@ -57,7 +57,7 @@
 		AB6B2D0F1716FF21004FC2F9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AB6B2D0E1716FF21004FC2F9 /* ProjectStats */,
+				AB6B2D0E1716FF21004FC2F9 /* projectstats */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -105,7 +105,7 @@
 			);
 			name = ProjectStats;
 			productName = ProjectStats;
-			productReference = AB6B2D0E1716FF21004FC2F9 /* ProjectStats */;
+			productReference = AB6B2D0E1716FF21004FC2F9 /* projectstats */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -208,7 +208,8 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ProjectStats/ProjectStats-Prefix.pch";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PRODUCT_NAME = projectstats;
 			};
 			name = Debug;
 		};
@@ -217,7 +218,8 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ProjectStats/ProjectStats-Prefix.pch";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PRODUCT_NAME = projectstats;
 			};
 			name = Release;
 		};
@@ -240,6 +242,7 @@
 				AB6B2D1E1716FF21004FC2F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -33,7 +33,7 @@ void getStats(NSString *path)
     if (stringRead.length == 0) {
         return;
     }
-    NSLog(@"output:\n%@", stringRead);
+    NSLog(@"\n%@\n", stringRead);
     [stringRead writeToFile:[path stringByAppendingString:@"/stats.txt"]
                  atomically:YES
                    encoding:NSUTF8StringEncoding
@@ -45,23 +45,55 @@ void cleanStats(NSString *path)
     runSystemCommand([NSString stringWithFormat:@"find %@ -type f -name \"stats.txt\" | xargs rm -rf",path]);
 }
 
+void printfHowToUse()
+{
+    printf(" ----------------------------------------------");
+    printf("\n| How To Use:                                  |\n");
+    printf("| ProjectStats [pathOfProject]       --- stats |\n");
+    printf("|              [-c pathOfProject]    --- clean |\n");
+    printf(" ----------------------------------------------\n");
+}
+
 int main(int argc, const char * argv[])
 {
     @autoreleasepool {
-        NSString *path = argc == 2 ? [NSString stringWithUTF8String:argv[1]] : @".";
-        NSArray *pathArray = [[NSFileManager defaultManager] subpathsAtPath:path];
-        BOOL isDirectory;
-        for (NSString *subPath in pathArray)
-        {
-            NSString *fullPath = [path stringByAppendingFormat:@"/%@", subPath];
-            if ([[NSFileManager defaultManager] fileExistsAtPath:fullPath isDirectory:&isDirectory])
+        switch (argc) {
+            case 2:
             {
-                if (isDirectory)
+                NSString *path = [[NSString stringWithUTF8String:argv[1]] length] > 0 ? [NSString stringWithUTF8String:argv[1]] : @".";
+                NSArray *pathArray = [[NSFileManager defaultManager] subpathsAtPath:path];
+                BOOL isDirectory;
+                for (NSString *subPath in pathArray)
                 {
-                    getStats([path stringByAppendingFormat:@"/%@", subPath]);
+                    NSString *fullPath = [path stringByAppendingFormat:@"/%@", subPath];
+                    if ([[NSFileManager defaultManager] fileExistsAtPath:fullPath isDirectory:&isDirectory])
+                    {
+                        if (isDirectory)
+                        {
+                            getStats([path stringByAppendingFormat:@"/%@", subPath]);
+                        }
+                    }
                 }
             }
+                break;
+            case 3:
+            {
+                if ([[NSString stringWithUTF8String:argv[1]] isEqualToString:@"-c"] && [[NSString stringWithUTF8String:argv[2]] length] > 0)
+                {
+                    cleanStats([NSString stringWithUTF8String:argv[2]]);
+                }
+            }
+                break;
+                
+            default:
+            {
+                printf("Arguments error...\n");
+                printfHowToUse();
+            }
+                break;
         }
+        
+
     }
     return 0;
 }
